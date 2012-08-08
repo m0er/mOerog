@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="comment">
+	<typeAlias alias="comment" type="com.moerog.module.comment.Comment"/>
+	 
+	<insert id="add" parameterClass="comment">
+		INSERT INTO moerogComment(comment_content, post_id, comment_writer)
+		VALUES (#commentContent#, #postId#, #commentWriter#)
+	</insert>
+	
+	<select id="list" resultClass="comment" parameterClass="int">
+		SELECT comment_id as commentId, comment_datetime as commentDatetime, comment_content as commentContent, comment_writer as commentWriter, post_id as postId
+		FROM moerogComment
+		WHERE post_id = #value#
+		ORDER BY comment_id ASC
+	</select>
+	
+	<select id="count" resultClass="int" parameterClass="int">
+		SELECT count(*) FROM moerogComment WHERE post_id = #value#
+	</select>
+	
+	<delete id="delete" parameterClass="comment">
+		DELETE FROM moerogComment
+		WHERE 1=1
+		AND comment_id = #commentId#
+		AND post_id = #postId#
+		AND comment_writer = #commentWriter#
+	</delete>
+</sqlMap>
