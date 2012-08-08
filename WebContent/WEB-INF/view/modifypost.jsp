@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.moerog.module.post.Category" %>
-<%@ page import="com.moerog.module.post.Post" %>
+<%@ page import="moer.moerog.module.post.Category" %>
+<%@ page import="moer.moerog.module.post.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -29,12 +29,12 @@
 					<form:option value="${post.postCategory}">
 						<%
 							Category[] cats = Category.values();
-							Post post = (Post) request.getAttribute("post");
-							for (int i=0; i<cats.length; i++) {
-								if (post.getPostCategory() == cats[i].ordinal() + 1) {
-									out.print(cats[i].name().toUpperCase());
-								}
-							}
+											Post post = (Post) request.getAttribute("post");
+											for (int i=0; i<cats.length; i++) {
+												if (post.getCategory() == cats[i].ordinal() + 1) {
+													out.print(cats[i].name().toUpperCase());
+												}
+											}
 						%>
 					</form:option>
 				</form:select>
