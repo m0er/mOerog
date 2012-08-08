@@ -1,6 +1,10 @@
 package moer.moerog.module.index;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import moer.moerog.module.comment.Comment;
+import moer.moerog.module.post.Category;
 import moer.moerog.module.user.User;
 import moer.moerog.module.user.UserService;
 
@@ -16,16 +20,16 @@ public class IndexController {
 	@Autowired UserService userService;
 	@Autowired IndexService indexService;
 	
-//	@ModelAttribute("enums")
-//	public List<String> getCategory() {
-//		List<String> categoryList = new ArrayList<String>();
-//		
-//		for (Category category : Category.values()) {
-//			categoryList.add(category.name());
-//		}
-//		
-//		return categoryList;
-//	}
+	@ModelAttribute("enums")
+	public List<String> getCategory() {
+		List<String> categoryList = new ArrayList<String>();
+		
+		for (Category category : Category.values()) {
+			categoryList.add(category.name());
+		}
+		
+		return categoryList;
+	}
 	
 	@RequestMapping("/index")
 	public String list(Comment comment, @ModelAttribute User loginUser, Model model) {

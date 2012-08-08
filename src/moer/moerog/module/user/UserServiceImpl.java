@@ -1,7 +1,5 @@
 package moer.moerog.module.user;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +9,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User adminLogin(User user) {
-		User tempUser = userRepository.findOne(user.getId());
+		User tempUser = userRepository.findByUserId(user.getUserId());
 		
-		if (tempUser.getId().equals(user.getId()) && tempUser.getPassword().equals(user.getPassword())) {
+		if (tempUser.getPassword().equals(user.getPassword())) {
 			user = tempUser;
 			user.setAdmin(true);
 			user.setLogin(true);
@@ -36,11 +34,6 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 	
-	@Override
-	public void logout(HttpSession session) {
-		session.invalidate();
-	}
-
 	@Override
 	public void register(User user) {
 		userRepository.save(user);

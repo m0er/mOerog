@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="moer.moerog.module.post.Category" %>
 <%@ page import="moer.moerog.module.post.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,11 +21,11 @@
 		<h2 class="title">Modify Post</h2>
 	</div>
 	<div class="border">
-		<form:form action="/mOerog-with-spring/post/modify.mo" commandName="post">
+		<form:form action="/post/modify" commandName="post">
 			<p>
 				<label for="category">카테고리:</label>
-				<form:select path="postCategory" disabled="true">
-					<form:option value="${post.postCategory}">
+				<form:select path="category" disabled="true">
+					<form:option value="${post.category}">
 						<%
 							Category[] cats = Category.values();
 											Post post = (Post) request.getAttribute("post");
@@ -39,17 +38,17 @@
 					</form:option>
 				</form:select>
 				<label for="postTitle">제목:</label>
-				<form:input path="postTitle" id="postTitle" cssClass="postForm"/>
+				<form:input path="title" id="title" cssClass="postForm"/>
 			</p>
 			<div class="category">
 				<h3 class="title">Modify Post</h3>
 			</div>
-			<form:textarea path="postContent" rows="30"/>
+			<form:textarea path="content" rows="30"/>
 			<div class="innerFooter">
 				<img class="btn" alt="수정" src="<spring:url value="/icon/script_save.png"/>" onclick="document.forms[0].submit();"/>
 			</div>
-			<input type="hidden" name="postId" value="${post.postId}"/>
-			<input type="hidden" name="postCategory" value="${post.postCategory}"/>
+			<input type="hidden" name="id" value="${post.id}"/>
+			<input type="hidden" name="category" value="${post.category}"/>
 			<input type="hidden" name="adminNickname" value="${post.adminNickname}"/>
 		</form:form>
 	</div>

@@ -24,7 +24,8 @@ public class UserRepositoryTest {
 		
 		User admin = new User();
 		admin.setAdmin(true);
-		admin.setNickname("admin");
+		admin.setUserId("admin");
+		admin.setNickname("mOer");
 		admin.setPassword("test");
 		
 		userRepository.save(admin);
@@ -37,9 +38,10 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void findAdminById_어드민_찾기() {
-		User user = userRepository.findByNickname("admin");
+		User user = userRepository.findByUserId("admin");
 		
 		assertThat(user.getId(), is(notNullValue(ObjectId.class)));
+		assertThat(user.getNickname(), is("mOer"));
 		assertThat(user.getPassword(), is("test"));
 	}
 	

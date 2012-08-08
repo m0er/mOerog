@@ -22,10 +22,10 @@
 		<h2 class="title">Guestbook</h2>
 	</div>
 	<%-- 로그인을 했다면 --%>
-	<c:if test="${user.login eq 'true'}">
-		<form:form action="/mOerog-with-spring/guestbook/add.mo" method="post" cssClass="display border right" commandName="guestbook">
-			<form:textarea path="gbookContent" title="글 남겨주세요"/>
-			<input type="hidden" name="gbookWriter" value="${user.userNickname}"/>
+	<c:if test="${sessionScope.loginUser.login eq 'true'}">
+		<form:form action="/guestbook/add" method="post" cssClass="display border right" commandName="guestbook">
+			<form:textarea path="content" title="글 남겨주세요"/>
+			<input type="hidden" name="writer" value="${sessionScope.loginUser.nickname}"/>
 			<div class="innerFooter">
 				<img class="btn" alt="등록" src="<c:url value="/icon/script_save.png"/>" title="등록하기" onclick="document.forms[0].submit();" />
 			</div>
@@ -44,20 +44,20 @@
 			<!-- 글을 출력한 후.. -->
 			<c:forEach var="guestbook" items="${list}">
 				<div class="display border">
-					<h2 class="left">${guestbook.gbookWriter}</h2>
+					<h2 class="left">${guestbook.writer}</h2>
 					<div class="writer right">
-						<p>No.${guestbook.gbookId}&nbsp;${guestbook.gbookDatetime}</p>
+						<p>No.${guestbook.id}&nbsp;${guestbook.created}</p>
 					</div>
 					<div class="contents">
-						${guestbook.gbookContent}
+						${guestbook.content}
 					</div>
 					<%-- 로그인 한 유저가 글 등록한 사람이라면 --%>
-					<c:if test="${user.userNickname eq guestbook.gbookWriter}">
+					<c:if test="${sessionScope.loginUser.nickname eq guestbook.writer}">
 						<!-- 사용자에 따라 아이콘 출력. -->
 						<div class="innerFooter">
-							<a href="<spring:url value="/guestbook/delete.mo">
-										<spring:param name="gbookId" value="${guestbook.gbookId}" />
-										<spring:param name="gbookWriter" value="${guestbook.gbookWriter}" />
+							<a href="<spring:url value="/guestbook/delete">
+										<spring:param name="id" value="${guestbook.id}" />
+										<spring:param name="writer" value="${guestbook.writer}" />
 									</spring:url>">
 								<img class="btn" src="<c:url value="/icon/script_delete.png"/>" alt="삭제" title="삭제하기" />
 							</a>

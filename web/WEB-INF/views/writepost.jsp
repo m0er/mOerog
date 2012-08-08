@@ -13,40 +13,39 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/style/style.css"/>"/>
 <script type="text/javascript" src="<c:url value="/js/header.js"/>"></script>
 </head>
-<body id="league_esl">
-<jsp:include page="include/header.jsp" flush="false"/>
-<div id="banner1">
-	<a href="http://www.esl.eu"><img src="<spring:url value="/image/esl_banner_resize.jpg"/>" alt="ESL banner" /></a>
-</div>
+<body id="writePost">
+<jsp:include page="include/header.jsp"/>
 <div id="content">
-	<%-- Tab 부분  --%>
-	<c:choose>
-		<c:when test="${totalCount eq 0 or postList eq null}">
-			<div class="empty">
-				<p>등록된 포스트가 없습니다.</p>
+	<div class="category border">
+		<h2 class="title">New Post</h2>
+	</div>
+	<div class="border">
+		<form:form action="/post/write" commandName="post">
+			<label for="category">카테고리:</label>
+			<form:select path="category" id="category">
+				<form:option value="null">Select...</form:option>
+				<form:option value="1">ESL</form:option>
+				<form:option value="2">ClanBase</form:option>
+				<form:option value="3">Media</form:option>
+			</form:select>
+			
+			<label for="postTitle">제목:</label>
+			<form:input path="title" id="postTitle" cssClass="postForm"/>
+			
+			<div class="category">
+				<h3 class="title">Write Post</h3>
 			</div>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="post" items="${postList}">
-			<div class="display border">
-				<h2 class="left">${post.postTitle}</h2>
-				<div class="writer right">
-					<p>${post.postDatetime}</p>
-					<p>No.${post.postId} &nbsp; ${post.adminNickname}</p>
-				</div>
-				<div class="contents">
-					${post.postContent}
-				</div>
-				<%-- 커멘트 부분 --%>
-				<%@ include file="include/comment.jsp" %>
-				<%-- 아이콘 부분 --%>
-				<%@ include file="include/icon_post.jsp" %>
+			
+			<form:textarea path="content" rows="30" cols="50"/>
+			<div class="innerFooter">
+				<img class="btn" alt="register" src="<spring:url value="/icon/script_save.png"/>" onclick="document.forms[0].submit();"/>
 			</div>
-			</c:forEach>
-		</c:otherwise>
-	</c:choose>
+			
+			<input type="hidden" name="adminNickname" value="${sessionScope.loginUser.nickname}"/>
+		</form:form>
+	</div>
 </div>
-<jsp:include page="include/sidebar.jsp" flush="false"/>
+<jsp:include page="include/sidebar.jsp"/>
 <!--[if IE]>
 <style type="text/css" media="screen">
 #content #wrap_tab {position: relative; top: 10px; left: -30px; margin-top: -20px;}
@@ -54,6 +53,7 @@
 #sidebar ul li {float: left; width: 100%;}
 #sidebar ul li a {height: 1%;}
 #menu a, #menu h2 {font: bold 0.7em/1.4em arial, helvetica, sans-serif;}
+#writePost #content form textarea {width: 550px; margin: 0; padding: 0;} 
 </style>
 <![endif]-->
 </body>

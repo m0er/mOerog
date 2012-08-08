@@ -4,14 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div id="header">
-	<h1><em>It's</em><br /><a href="<c:url value="/index.mo" />">REALITY.</a></h1>
+	<h1><em>It's</em><br /><a href="<c:url value="/index" />">REALITY.</a></h1>
 </div>
 <c:choose>
-<c:when test="${sessionScope.user eq null or sessionScope.user.login eq 'false'}">
+<c:when test="${sessionScope.loginUser eq null or sessionScope.loginUser.login eq false}">
 	<div id="login">
 		<p><a onclick="selectMenu(1)">로그인</a> | <a onclick="selectMenu(2)">등록하기</a></p>
 		<div id="loginForm" style="display:none">
-			<form:form action="/mOerog-with-spring/user/login.mo" method="post" commandName="user">
+			<form:form action="/user/login" method="post" commandName="user">
 				<p>User Login</p>
 				<p>
 					<label for="loginId">ID:</label>
@@ -19,13 +19,13 @@
 				</p>
 				<p>
 					<label for="loginPassword">PW:</label>
-					<form:password path="userPword" id="loginPassword" cssStyle="login"/>
+					<form:password path="password" id="loginPassword" cssStyle="login"/>
 				</p>
 				<input type="submit" value="로그인" class="btn" />
 			</form:form>
 		</div>
 		<div id="registerForm" style="display:none">
-			<form:form method="post" action="/mOerog-with-spring/user/register.mo" commandName="user">
+			<form:form method="post" action="/user/register" commandName="user">
 				<p>Register User</p>
 				<p>
 					<label for="user_id">ID:</label>
@@ -33,15 +33,15 @@
 				</p>
 				<p>
 					<label for="user_password">PW:</label>
-					<form:password path="userPword" id="user_password" cssClass="login"/>
+					<form:password path="password" id="user_password" cssClass="login"/>
 				</p>
 				<p>
 					<label for="user_nickname">nickname:</label>
-					<form:input path="userNickname" id="user_nickname" cssClass="login"/>
+					<form:input path="nickname" id="user_nickname" cssClass="login"/>
 				</p>
 				<p>
 					<label for="user_email">e-mail:</label>
-					<form:input path="userEmail" id="user_email" cssClass="login"/>
+					<form:input path="email" id="user_email" cssClass="login"/>
 				</p>
 				<input type="submit" value="등록" class="btn"/>
 			</form:form>
@@ -51,7 +51,7 @@
 <c:otherwise>
 	<div id="logout">
 		<p>
-			<a href="<c:url value="/user/logout.mo" />">로그아웃</a>
+			<a href="<c:url value="/user/logout" />">로그아웃</a>
 		</p>
 	</div>
 </c:otherwise>

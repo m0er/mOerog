@@ -18,8 +18,8 @@ public class CommentController {
 		logger.info("포스트 아이디: " + comment.getPostId());
 		
 		logger.info("카테고리: " + category);
-		logger.info("커멘트 작성자: " + comment.getCommentWriter());
-		logger.info("커멘트 내용: " + comment.getCommentContent());
+		logger.info("커멘트 작성자: " + comment.getWriter());
+		logger.info("커멘트 내용: " + comment.getContent());
 		
 		commentService.writeComment(comment);
 		
@@ -29,8 +29,8 @@ public class CommentController {
 	@RequestMapping("delete")
 	public String delete(@RequestParam int category, Comment comment) {
 		logger.info("포스트 아이디: " + comment.getPostId());
-		logger.info("커멘트 아이디: " + comment.getCommentId());
-		logger.info("커멘트 작성자: " + comment.getCommentWriter());
+		logger.info("커멘트 아이디: " + comment.getId());
+		logger.info("커멘트 작성자: " + comment.getWriter());
 		
 		commentService.deleteById(comment);
 		

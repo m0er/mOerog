@@ -7,7 +7,7 @@
 	<uri>ELFunction</uri>
 	<function>
 		<name>toUpperCase</name>
-		<function-class>com.moerog.util.ELFunction</function-class>
+		<function-class>moer.moerog.util.ELFunction</function-class>
 		<function-signature>String toUpperCase(java.lang.String)</function-signature>
 	</function>
 </taglib>

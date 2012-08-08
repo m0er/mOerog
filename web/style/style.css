@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-body {color: #474a51; font-weight: 500; margin: 0 auto; padding: 0; width: 760px; font-family: Verdana, "���� ���", sans-serif; background: #f4f4ed; line-height: 1.6;}
+body {color: #474a51; font-weight: 500; margin: 0 auto; padding: 0; width: 760px; font-family: "나눔고딕", Verdana, sans-serif; background: #f4f4ed; line-height: 1.6;}
 body strong {font-weight: 900;}
 body a {color: #2f73ff; font-weight: bold;}
 body a:hover {color: #306575;}
@@ -78,7 +78,7 @@ div#sidebar ul ul li:hover ul, div#sidebar ul ul ul li:hover ul {display: block;
 #content .empty {text-align: center; margin: 10px 0; font-weight: bold; clear: both; margin-top: 100px;}
 #content #commentForm {width: 566px; margin: 0; margin-top: -5px;}
 #content .comment {margin-bottom: 10px;}
-#content form textarea {width: 100%; height: 70px; padding: 0;}
+#content form textarea {width: 540px; height: 70px; padding: 5;}
 #writePost #content form textarea {height: 500px;}
 
 /* 메인 컨텐츠 - 탭 스타일 */
@@ -93,8 +93,8 @@ div#sidebar ul ul li:hover ul, div#sidebar ul ul ul li:hover ul {display: block;
 */
 /* 메인 컨텐츠 - 방명록 스타일 */
 #guestbook #userName, #guestbook #userPassword {width: 100px;}
-#guestbook #content form textarea {width: 100%; height: 70px; padding: 0;}
+#guestbook #content form textarea {width: 535px; height: 70px; padding: 5px;}
 #guestbook #content .inputBox {margin: 5px 0 5px 5px;}
-#guestbook #content form input, #content form textarea {font-family: Vernada, "���� ���", sans-serif; font-size: 100%;}
+#guestbook #content form input, #content form textarea {font-family: "나눔고딕", Vernada, sans-serif; font-size: 100%;}
 #guestbook #content .right input {width: 100px;}
 #guestbook #content form {width: 566px;}

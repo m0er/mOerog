@@ -17,13 +17,15 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	@RequestMapping("adminlogin")
-	public String adminLogin(User user) {
-		logger.info(user.getId().toString());
+	public String adminLogin(User user, Model model) {
+		logger.info(user.getUserId());
 		logger.info(user.getPassword());
 		
 		User admin = userService.adminLogin(user); 
 		if (admin != null) {
-			logger.info(user.getId() + "(Admin) 로그인 완료");
+			logger.info(admin.toString());
+			logger.info(admin.getId() + "(Admin) 로그인 완료");
+			model.addAttribute("loginUser", admin);
 		}
 		
 		return "redirect:/index";
@@ -31,7 +33,7 @@ public class UserController {
 	
 	@RequestMapping("login")
 	public String login(User user, Model model) {
-		logger.info(user.getId().toString());
+		logger.info(user.getUserId());
 		logger.info(user.getPassword());
 		
 		User loginUser = userService.login(user); 

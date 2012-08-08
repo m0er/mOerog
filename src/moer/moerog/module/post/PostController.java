@@ -46,7 +46,9 @@ public class PostController {
 	}
 
 	@RequestMapping("form")
-	public String form(User user, Post post) {
+	public String form(Model model) {
+		model.addAttribute("post", new Post());
+		model.addAttribute("user", new User());
 		return "writepost";
 	}
 	

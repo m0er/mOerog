@@ -13,37 +13,38 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/style/style.css"/>"/>
 <script type="text/javascript" src="<c:url value="/js/header.js"/>"></script>
 </head>
-<body id="writePost">
+<body id="media">
 <jsp:include page="include/header.jsp"/>
+<div id="banner1">
+	<a href="http://www.gametrailers.com" title="GameTrailers"><img width="760" height="100" src="<spring:url value="/image/gt_banner.jpg"/>" alt="GT Banner" /></a>
+</div>
 <div id="content">
-	<div class="category border">
-		<h2 class="title">New Post</h2>
-	</div>
-	<div class="border">
-		<form:form action="/mOerog-with-spring/post/write.mo" commandName="post">
-			<label for="category">카테고리:</label>
-			<form:select path="postCategory" id="category">
-				<form:option value="null">Select...</form:option>
-				<form:option value="1">ESL</form:option>
-				<form:option value="2">ClanBase</form:option>
-				<form:option value="3">Media</form:option>
-			</form:select>
-			
-			<label for="postTitle">제목:</label>
-			<form:input path="postTitle" id="postTitle" cssClass="postForm"/>
-			
-			<div class="category">
-				<h3 class="title">Write Post</h3>
+	<%-- Tab 부분  --%>
+	<c:choose>
+		<c:when test="${totalCount eq 0 or postList eq null}">
+			<div class="empty">
+				<p>등록된 포스트가 없습니다.</p>
 			</div>
-			
-			<form:textarea path="postContent" rows="30" cols="50"/>
-			<div class="innerFooter">
-				<img class="btn" alt="register" src="<spring:url value="/icon/script_save.png"/>" onclick="document.forms[0].submit();"/>
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="post" items="${postList}">
+			<div class="display border">
+				<h2 class="left">${post.title}</h2>
+				<div class="writer right">
+					<p>${post.created}</p>
+					<p>No.${post.id} &nbsp; ${post.adminNickname}</p>
+				</div>
+				<div class="contents">
+					${post.content}
+				</div>
+				<%-- 커멘트 부분 --%>
+				<%@ include file="include/comment.jsp" %>
+				<%-- 아이콘 부분 --%>
+				<%@ include file="include/icon_post.jsp" %>
 			</div>
-			
-			<input type="hidden" name="adminNickname" value="${sessionScope.user.userNickname}"/>
-		</form:form>
-	</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 </div>
 <jsp:include page="include/sidebar.jsp"/>
 <!--[if IE]>
@@ -53,7 +54,6 @@
 #sidebar ul li {float: left; width: 100%;}
 #sidebar ul li a {height: 1%;}
 #menu a, #menu h2 {font: bold 0.7em/1.4em arial, helvetica, sans-serif;}
-#writePost #content form textarea {width: 550px; margin: 0; padding: 0;} 
 </style>
 <![endif]-->
 </body>

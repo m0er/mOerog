@@ -3,42 +3,59 @@ package moer.moerog.module.comment;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Comment {
-	private ObjectId commentId;
-	private Date commentDatetime;
-	private String commentContent;
+	private ObjectId id;
+	private Date created;
+	private String content;
 	private ObjectId postId;
-	private String commentWriter;
-	
-	public String getCommentWriter() {
-		return commentWriter;
+	private String writer;
+
+	public String getWriter() {
+		return writer;
 	}
-	public void setCommentWriter(String commentWriter) {
-		this.commentWriter = commentWriter;
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public ObjectId getCommentId() {
-		return commentId;
+
+	public ObjectId getId() {
+		return id;
 	}
-	public void setCommentId(ObjectId commentId) {
-		this.commentId = commentId;
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
-	public Date getCommentDatetime() {
-		return commentDatetime;
+
+	public Date getCreated() {
+		return created;
 	}
-	public void setCommentDatetime(Date commentDatetime) {
-		this.commentDatetime = commentDatetime;
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
-	public String getCommentContent() {
-		return commentContent;
+
+	public String getContent() {
+		return content;
 	}
-	public void setCommentContent(String commentContent) {
-		this.commentContent = commentContent;
+
+	public void setContent(String content) {
+		this.content = content;
 	}
+
 	public ObjectId getPostId() {
 		return postId;
 	}
+
 	public void setPostId(ObjectId postId) {
 		this.postId = postId;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", created=" + created + ", content="
+				+ content + ", postId=" + postId + ", writer=" + writer + "]";
 	}
 }

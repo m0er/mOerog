@@ -13,10 +13,10 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/style/style.css"/>"/>
 <script type="text/javascript" src="<c:url value="/js/header.js"/>"></script>
 </head>
-<body id="media">
-<jsp:include page="include/header.jsp"/>
+<body id="league_esl">
+<jsp:include page="include/header.jsp" flush="false"/>
 <div id="banner1">
-	<a href="http://www.gametrailers.com" title="GameTrailers"><img width="760" height="100" src="<spring:url value="/image/gt_banner.jpg"/>" alt="GT Banner" /></a>
+	<a href="http://www.esl.eu"><img src="<spring:url value="/image/esl_banner_resize.jpg"/>" alt="ESL banner" /></a>
 </div>
 <div id="content">
 	<%-- Tab 부분  --%>
@@ -29,13 +29,13 @@
 		<c:otherwise>
 			<c:forEach var="post" items="${postList}">
 			<div class="display border">
-				<h2 class="left">${post.postTitle}</h2>
+				<h2 class="left">${post.title}</h2>
 				<div class="writer right">
-					<p>${post.postDatetime}</p>
-					<p>No.${post.postId} &nbsp; ${post.adminNickname}</p>
+					<p>${post.created}</p>
+					<p>No.${post.id} &nbsp; ${post.adminNickname}</p>
 				</div>
 				<div class="contents">
-					${post.postContent}
+					${post.content}
 				</div>
 				<%-- 커멘트 부분 --%>
 				<%@ include file="include/comment.jsp" %>
@@ -46,7 +46,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<jsp:include page="include/sidebar.jsp"/>
+<jsp:include page="include/sidebar.jsp" flush="false"/>
 <!--[if IE]>
 <style type="text/css" media="screen">
 #content #wrap_tab {position: relative; top: 10px; left: -30px; margin-top: -20px;}

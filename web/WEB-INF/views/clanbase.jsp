@@ -29,13 +29,13 @@
 		<c:otherwise>
 			<c:forEach var="post" items="${postList}">
 			<div class="display border">
-				<h2 class="left">${post.postTitle}</h2>
+				<h2 class="left">${post.title}</h2>
 				<div class="writer right">
-					<p>${post.postDatetime}</p>
-					<p>No.${post.postId} &nbsp; ${post.adminNickname}</p>
+					<p>${post.created}</p>
+					<p>No.${post.id} &nbsp; ${post.adminNickname}</p>
 				</div>
 				<div class="contents">
-					${post.postContent}
+					${post.content}
 				</div>
 				<%-- 커멘트 부분 --%>
 				<%@ include file="include/comment.jsp" %>

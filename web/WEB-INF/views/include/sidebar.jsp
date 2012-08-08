@@ -8,8 +8,8 @@
 <div id="wrap">
 	<div id="profile">
 		<c:choose>
-			<c:when test="${sessionScope.user eq null or sessionScope.user.login eq 'false'}">				
-				<form:form action="/mOerog-with-spring/user/adminlogin.mo" method="post" commandName="user">
+			<c:when test="${sessionScope.loginUser eq null or sessionScope.loginUser.login eq false}">				
+				<form:form action="/user/adminlogin" method="post" commandName="user">
 					<p>Admin Login</p>
 					<p>
 						<label for="loginId">ID:</label>
@@ -17,24 +17,24 @@
 					</p>
 					<p>
 						<label for="loginPassword">PW:</label>
-						<form:password path="userPword" id="loginPassword" cssClass="login"/>
+						<form:password path="password" id="loginPassword" cssClass="login"/>
 					</p>					
 					<p>
 						<input type="submit" value="로그인"/>
 					</p>
 				</form:form>
 			</c:when>
-			<c:when test="${sessionScope.user.admin eq 'true'}">
-				<p><a href="mailto:${sessionScope.user.userEmail}">${sessionScope.user.userNickname}</a>&nbsp;:)</p>
+			<c:when test="${sessionScope.loginUser.admin}">
+				<p><a href="mailto:${sessionScope.loginUser.email}">${sessionScope.loginUser.nickname}</a>&nbsp;:)</p>
 				<p class="writePost">
-					<a href="<spring:url value="/post/form.mo" />">포스트 작성</a>
+					<a href="<spring:url value="/post/form" />">포스트 작성</a>
 				</p>
 				<p>
-					<a href="<spring:url value="/user/logout.mo" />">Logout</a>
+					<a href="<spring:url value="/user/logout" />">Logout</a>
 				</p>
 			</c:when>
 			<c:otherwise>
-				<p>Welcome <strong>${sessionScope.user.userNickname}</strong></p>
+				<p>Welcome <strong>${sessionScope.loginUser.nickname}</strong></p>
 			</c:otherwise>
 		</c:choose>
 		<p class="ccl"><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.0/kr/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/2.0/kr/88x31.png" title="저작자표시-비영리-변경금지" /></a></p>
@@ -46,20 +46,20 @@
 						<li><a>News-</a>
 							<ul>
 								<li>
-									<a href="<spring:url value="/post/list.mo">
-												<spring:param name="categoryId" value="1"/>
+									<a href="<spring:url value="/post/list">
+												<spring:param name="category" value="1"/>
 											</spring:url>" title="ESL 관련 페이지">
 									ESL</a>
 								</li>
 								<li>
-									<a href="<spring:url value="/post/list.mo">
-												<spring:param name="categoryId" value="2"/>
+									<a href="<spring:url value="/post/list">
+												<spring:param name="category" value="2"/>
 											</spring:url>" title="ClanBase 관련 페이지">
 									ClanBase</a>
 								</li>
 								<li>
-									<a href="<spring:url value="/post/list.mo">
-												<spring:param name="categoryId" value="3"/>
+									<a href="<spring:url value="/post/list">
+												<spring:param name="category" value="3"/>
 											</spring:url>" title="e-Sports 관련 Media 페이지">
 									Media</a>
 								</li>
@@ -79,7 +79,7 @@
 				<li><h2>hello?</h2>
 					<ul>
 						<li>
-							<a href="<spring:url value="/guestbook/list.mo" />" title="ClanBase 관련 페이지">Guestbook</a>
+							<a href="<spring:url value="/guestbook/list" />" title="ClanBase 관련 페이지">Guestbook</a>
 						</li>
 					</ul>
 				</li>				

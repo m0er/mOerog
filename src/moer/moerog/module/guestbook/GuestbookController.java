@@ -18,9 +18,11 @@ public class GuestbookController {
 	Logger logger = LoggerFactory.getLogger(GuestbookController.class);
 	
 	@RequestMapping("list")
-	public String list(Guestbook guestbook, @ModelAttribute User loginUser, Model model) {
-		model.addAttribute("totalCount", guestbookService.getTotalCount());
+	public String list(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("guestbook", new Guestbook());
 		model.addAttribute("list", guestbookService.getList());
+		model.addAttribute("totalCount", guestbookService.getTotalCount());
 		
 		return "guestbook";
 	}
