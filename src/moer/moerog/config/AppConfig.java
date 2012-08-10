@@ -8,7 +8,7 @@ import org.springframework.stereotype.*;
 import com.mongodb.*;
 
 @Configuration
-@ImportResource("classpath:applicationContext.xml")
+@ImportResource({"classpath:applicationContext.xml", "classpath:applicationContext-security.xml"})
 @ComponentScan(basePackages="moer.moerog", excludeFilters={@ComponentScan.Filter(Configuration.class), @ComponentScan.Filter(Controller.class)})
 public class AppConfig {
 	@Autowired Mongo mongo;
