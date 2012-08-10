@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.spring3.SpringTemplateEngine;
 
 
 @Controller
@@ -20,7 +19,6 @@ import org.thymeleaf.spring3.SpringTemplateEngine;
 public class IndexController {
 	@Autowired UserService userService;
 	@Autowired IndexService indexService;
-	@Autowired SpringTemplateEngine templateEngine;
 	
 	@ModelAttribute("enums")
 	public List<String> getCategory() {
@@ -40,8 +38,6 @@ public class IndexController {
 		
 		model.addAttribute("index", index);
 		model.addAttribute("commentMap", indexService.getCommentMap(index.getPostMap()));
-		
-		templateEngine.clearTemplateCache();
 		
 		return "index";
 	}
