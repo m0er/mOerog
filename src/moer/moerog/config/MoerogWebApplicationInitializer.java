@@ -2,11 +2,11 @@ package moer.moerog.config;
 
 import javax.servlet.*;
 
-import org.springframework.web.*;
-import org.springframework.web.context.*;
-import org.springframework.web.context.support.*;
-import org.springframework.web.filter.*;
-import org.springframework.web.servlet.*;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.DispatcherServlet;
 
 public class MoerogWebApplicationInitializer implements WebApplicationInitializer {
 
