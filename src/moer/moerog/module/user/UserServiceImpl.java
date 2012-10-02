@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User login(User user) {
-		User tempUser = userRepository.findOne(user.getId());
+		User tempUser = userRepository.findByUserId(user.getUserId());
 		
 		if (tempUser.getId().equals(user.getId()) && tempUser.getPassword().equals(user.getPassword())) {
 			user = tempUser;

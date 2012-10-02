@@ -5,8 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
@@ -31,7 +30,12 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping(value="login", method=RequestMethod.GET)
+	public String form() {
+		return "/login";
+	}
+	
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	public String login(User user, Model model) {
 		logger.info(user.getUserId());
 		logger.info(user.getPassword());

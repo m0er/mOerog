@@ -23,7 +23,6 @@ public class WebConfig extends WebMvcConfigurationSupport {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
-		viewResolver.setOrder(2);
 		return viewResolver;
 	}
 	
