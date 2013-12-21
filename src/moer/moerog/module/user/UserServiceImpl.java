@@ -1,11 +1,14 @@
 package moer.moerog.module.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired private UserRepository userRepository;
+	Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Override
 	public User adminLogin(User user) {
@@ -25,7 +28,9 @@ public class UserServiceImpl implements UserService {
 	public User login(User user) {
 		User tempUser = userRepository.findByUserId(user.getUserId());
 		
-		if (tempUser.getId().equals(user.getId()) && tempUser.getPassword().equals(user.getPassword())) {
+		logger.debug("UserServiceImpl: " + user);
+		
+		if (tempUser.getUserId().equals(user.getUserId()) && tempUser.getPassword().equals(user.getPassword())) {
 			user = tempUser;
 			user.setLogin(true);
 			return user;
