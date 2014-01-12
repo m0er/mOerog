@@ -5,6 +5,7 @@ import moer.moerog.module.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class GuestbookController {
 	}
 	
 	@RequestMapping("add")
+	@Secured({"ROLE_USER"})
 	public String form(Guestbook guestbook) {
 		logger.info(guestbook.getWriter());
 		
