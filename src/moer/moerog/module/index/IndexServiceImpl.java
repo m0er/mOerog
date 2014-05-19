@@ -26,7 +26,7 @@ public class IndexServiceImpl implements IndexService {
 	
 	@Override
 	public Map<ObjectId, List<Comment>> getCommentMap(Map<String, List<Post>> postMap) {
-		Map<ObjectId, List<Comment>> commentMap = new HashMap<>();
+		Map<ObjectId, List<Comment>> commentMap = new HashMap<ObjectId, List<Comment>>();
 		
 		for (Category category : Category.values()) {
 			for (Post post : postMap.get(category.name())) {

@@ -37,7 +37,7 @@ public class PostController {
 	
 	@SuppressWarnings("unchecked")
 	private void addComment(Model model) {
-		Map<ObjectId, List<Comment>> commentMap = new HashMap<>();
+		Map<ObjectId, List<Comment>> commentMap = new HashMap<ObjectId, List<Comment>>();
 		for (Post post : (List<Post>) model.asMap().get("postList")) {
 			ObjectId postId = post.getId();
 			commentMap.put(postId, commentService.getListByPostId(postId));

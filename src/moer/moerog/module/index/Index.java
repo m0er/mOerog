@@ -8,8 +8,8 @@ import moer.moerog.module.post.Post;
 
 
 public class Index {
-	private Map<String, List<Post>> postMap = new HashMap<>();
-	private Map<String, Long> postCount = new HashMap<>();
+	private Map<String, List<Post>> postMap = new HashMap<String, List<Post>>();
+	private Map<String, Long> postCount = new HashMap<String, Long>();
 
 	public Map<String, Long> getPostCount() {
 		return postCount;
